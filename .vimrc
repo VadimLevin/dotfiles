@@ -1,11 +1,12 @@
 " ----------------------------------------------------------------------------
 "                             Table of Contents
 " ----------------------------------------------------------------------------
+"
 " 1. General configurations
-" 2. Plugins
-" 3. Appearance
-" 4. Key Bindings
-" 5. Utility Functions
+" 2. Appearance
+" 3. Key Bindings
+" 4. Utility Functions
+"
 " ----------------------------------------------------------------------------
 "                                 General
 " ----------------------------------------------------------------------------
@@ -55,7 +56,7 @@ set t_vb=
 set tm=500
 " Minimal number of screen lines to keep above and below the cursor
 set scrolloff=8
-" Return to last edit position when opening files (You want this!)
+" Return to last edit position when opening files
 autocmd BufReadPost *
     \ if line("'\"") > 1 && line("'\"") <= line("$") |
     \   exe "normal! g`\"" |
@@ -77,64 +78,37 @@ set path+=**
 "     Indent configuration
 " -------------------------------
 " Tab size in spaces
-set tabstop=2
+set tabstop=4
 " Do not use the actual tab character
 set expandtab
 " Tabs width when indenting with spaces
-set shiftwidth=2
-set softtabstop=2
+set shiftwidth=4
+set softtabstop=4
 " Copy indentation from the previous line
 set autoindent
 " Automatically insert one extra level of indentation when it's possible
 set smartindent
-" ----------------------------------------------------------------------------
-"                                 Plugins
-" ----------------------------------------------------------------------------
-filetype off
-" Runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-  " let Vundle manage Vundle, required
-  Plugin 'VundleVim/Vundle.vim'
-  " Paper color theme for vim
-  Plugin 'NLKNguyen/papercolor-theme'
-  " Tree explorer
-  Plugin 'scrooloose/nerdtree'
-  " Git plugin for tree explorer
-  Plugin 'Xuyuanp/nerdtree-git-plugin'
-  " Show git changes in the 'gutter' (sign column)
-  Plugin 'airblade/vim-gitgutter'
-  " Pretty color scheme
-  Plugin 'morhetz/gruvbox'
-  " Custom status line
-  Plugin 'vim-airline/vim-airline'
-  Plugin 'vim-airline/vim-airline-themes'
-call vundle#end()
-" Attempt to determine the type of a file based on its name and possibly its
-" contents.
-filetype indent plugin on
-" -------------------------------
-"     NERDTree File explorer
-" -------------------------------
-" Automatically open tree explorer when vim starts up opening a directory
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter *
-        \ if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in")
-        \ | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0]
-        \ | endif
 " -------------------------------
 "     NETRW Default File explorer
 " -------------------------------
 " Disable banner
 let g:netrw_banner=0
-" Open splits to the right
+" Open files in previous window
 let g:netrw_browse_split=4
 " Open splits to the right
 let g:netrw_altv=1
+" Set the width of the directory explorer
+let g:netrw_winsize=25
 " Enable tree view
 let g:netrw_liststyle=3
+" Open NETRW in the vertical split on start-up
+" augroup ProjectDrawer
+"     autocmd!
+"     autocmd VimEnter * :Vexplore
+" augroup END
+
 " ----------------------------------------------------------------------------
-"                           Appearance
+"                               Appearance
 " ----------------------------------------------------------------------------
 " -------------------------------
 "           General
@@ -150,7 +124,7 @@ set showmode
 " Show 'invisible' characters
 set listchars=tab:>.,trail:·,extends:>,precedes:<
 set list
-" Show the filename in the window titlebar
+" Show the filename in the window title bar
 set title
 " highlight the 80 column limit
 set colorcolumn=80
@@ -172,7 +146,8 @@ set statusline+=%=                              " Left/right separator
 set statusline+=%c,                             " Cursor column
 set statusline+=\ %l/%L                         " Cursor line/total lines
 set statusline+=\ %P                            " Percent through file
-" Set the command window height to 2 lines
+" Set the command window height to 2 lines (gives more space for displaying
+" messages)
 set cmdheight=2
 " GUI fonts
 if has('gui_running') && has('gui_win32')
@@ -180,40 +155,13 @@ if has('gui_running') && has('gui_win32')
 else
   set guifont=DejaVu\ Sans\ Mono\ 10
 endif
-" -------------------------------
-"             Theme
-" -------------------------------
-let g:PaperColor_Theme_Options = {
-  \   'language': {
-  \     'python': {
-  \       'highlight_builtins' : 1
-  \     },
-  \     'cpp': {
-  \       'highlight_standard_library': 1
-  \     },
-  \     'c': {
-  \       'highlight_builtins' : 1
-  \     }
-  \   }
-  \ }
-set background=light
+
 set termguicolors
-try
-  let g:gruvbox_guisp_fallback='bg'
-  let g:gruvbox_contrast_light='hard'
-  let g:gruvbox_contrast_dark='hard'
-  let g:gruvbox_italic=1
-  let g:gruvbox_improved_warnings=1
-  let g:gruvbox_undercurl=1
-  colorscheme gruvbox
-catch
-  colorscheme desert
-endtry
+
 " ----------------------------------------------------------------------------
-"                           Key Bindings
+"                               Key Bindings
 " ----------------------------------------------------------------------------
-" Maps toggle to specific key
-map <C-n> :NERDTreeToggle<CR>
+
 " Fast saving
 nmap <leader>w :w!<cr>
 " Moving between buffers
@@ -227,30 +175,15 @@ nnoremap p p=`]<C-o>
 nnoremap P P=`]<C-o>
 map <silent> <leader><cr> :noh<cr>
 " Remap VIM 0 to first non-blank character
-" Move a line of text using ALT+[jk]
 map 0 ^
-" Here goes an workaround to work in terminals Ctrl-V + Alt + key
-nnoremap j :m .+1<CR>==
-nnoremap k :m .-2<CR>==
-inoremap j <Esc>:m .+1<CR>==gi
-inoremap k <Esc>:m .-2<CR>==gi
-vnoremap j :m '>+1<CR>gv=gv
-vnoremap k :m '<-2<CR>gv=gv
 " Visual mode pressing * or # searches for the current selection
 " Super useful! From an idea by Michael Naumann
 vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
 vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
-" ----------------------------------------------------------------------------
-"                           Utility Functions
-" ----------------------------------------------------------------------------
-" Returns true if paste mode is enabled
-function! HasPaste()
-    if &paste
-        return 'PASTE MODE  '
-    endif
-    return ''
-endfunction
 
+" ----------------------------------------------------------------------------
+"                            Utility Functions
+" ----------------------------------------------------------------------------
 function! CmdLine(str)
     call feedkeys(":" . a:str)
 endfunction
@@ -271,3 +204,4 @@ function! VisualSelection(direction, extra_filter) range
     let @/ = l:pattern
     let @" = l:saved_reg
 endfunction
+
