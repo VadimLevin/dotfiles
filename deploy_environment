@@ -1,0 +1,19 @@
+#!/usr/bin/env zsh
+
+DOTFILES=$(dirname "$0")
+
+CURRENT_DIRECTORY=$(pwd)
+
+pushd $DOTFILES
+
+for folder in $(ls -dm */ | tr '\,\/' ' ') 
+do
+    echo "Installing '$folder'..."
+    stow -D $folder
+    stow $folder
+done
+
+if [ "$CURRENT_DIRECTORY" != "$DOTFILES" ]; then
+    popd
+fi
+

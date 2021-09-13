@@ -23,7 +23,7 @@ endif
 " Set to auto read when a file is changed from the outside
 set autoread
 " With a map leader it's possible to do extra key combinations
-let mapleader = ","
+let mapleader = " "
 " Enhance command-line completion
 set wildmenu
 " Allow to re-use the same window and switch from an unsaved buffer without
@@ -54,13 +54,34 @@ set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
-" Minimal number of screen lines to keep above and below the cursor
-set scrolloff=8
+" Minimal number of screen lines to keep from the above and below the cursor
+if !&scrolloff
+    set scrolloff=8
+endif
+" Minimal number of columns to keep from the left and right of the cursor
+if !&sidescrolloff
+    set sidescrolloff=5
+endif
 " Return to last edit position when opening files
 autocmd BufReadPost *
     \ if line("'\"") > 1 && line("'\"") <= line("$") |
     \   exe "normal! g`\"" |
     \ endif
+" Delete comment character when joining commented lines
+if v:version > 703 || v:version == 703 && has("patch541")
+    set formatoptions+=j
+endif
+if &history < 1000
+    set history=1000
+endif
+if &tabpagemax < 50
+    set tabpagemax=50
+endif
+
+" When included, as much as possible of the last line in a window will
+" be displayed.
+set display+=lastline
+
 " -------------------------------
 "     Search configuration
 " -------------------------------
@@ -114,7 +135,9 @@ let g:netrw_liststyle=3
 "           General
 " -------------------------------
 " Enable syntax highlighting
-syntax on
+if has('syntax') && !exists('g:syntax_on')
+    syntax enable
+endif
 " Add a bit extra margin to the left
 set foldcolumn=1
 " Show the cursor position
@@ -126,8 +149,8 @@ set listchars=tab:>.,trail:·,extends:>,precedes:<
 set list
 " Show the filename in the window title bar
 set title
-" highlight the 80 column limit
-set colorcolumn=80
+" highlight the 80 and 120 column limit
+set colorcolumn=80,120
 " === Line numbers ===
 " Displays absolute line number
 set number
@@ -156,7 +179,7 @@ else
   set guifont=DejaVu\ Sans\ Mono\ 10
 endif
 
-set termguicolors
+set background=dark
 
 " ----------------------------------------------------------------------------
 "                               Key Bindings
@@ -170,9 +193,9 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 " Auto indent pasted text
-nnoremap p p=`]<C-o>
+" nnoremap p p=`]<C-o>
 " Disable highlight when <leader><cr> is pressed
-nnoremap P P=`]<C-o>
+" nnoremap P P=`]<C-o>
 map <silent> <leader><cr> :noh<cr>
 " Remap VIM 0 to first non-blank character
 map 0 ^

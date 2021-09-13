@@ -1,0 +1,66 @@
+{
+    "terminal.integrated.fontFamily": "'DejaVu Sans Mono'",
+    "editor.rulers": [
+        80, 100, 120
+    ],
+    "clangd.arguments": [
+        "--background-index",
+        "--compile-commands-dir=build",
+        "--completion-style=detailed",
+        "--clang-tidy",
+        "-j=8"
+    ],
+    "editor.minimap.enabled": false,
+    "editor.minimap.renderCharacters": false,
+    "vim.vimrc.enable": true,
+    "cSpell.userWords": [
+        "numpy"
+    ],
+    "diffEditor.ignoreTrimWhitespace": false,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "C_Cpp.autocomplete": "Disabled",
+    "C_Cpp.autoAddFileAssociations": false,
+    "C_Cpp.codeFolding": "Disabled",
+    "C_Cpp.configurationWarnings": "Disabled",
+    "C_Cpp.default.enableConfigurationSquiggles": false,
+    "C_Cpp.dimInactiveRegions": false,
+    "C_Cpp.enhancedColorization": "Disabled",
+    "C_Cpp.errorSquiggles": "Disabled",
+    "C_Cpp.formatting": "Disabled",
+    "C_Cpp.intelliSenseEngine": "Disabled",
+    "C_Cpp.loggingLevel": "None",
+    "material-icon-theme.folders.color": "#90a4ae",
+    "material-icon-theme.hidesExplorerArrows": false,
+    "material-icon-theme.activeIconPack": "",
+    "workbench.iconTheme": "vscode-great-icons",
+    "telemetry.enableTelemetry": false,
+    "telemetry.enableCrashReporter": false,
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "testMate.cpp.log.userId": "323c2b03358071e19e55cced3874b28494a1d193",
+    "testMate.cpp.log.logSentry": "disable_3",
+    "editor.fontFamily": "'Fira Code', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback' ",
+    "editor.inlineHints.fontFamily": "'Fira Code', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.fontSize": 13,
+    "editor.fontLigatures": true,
+    "editor.lineNumbers": "on",
+    "doxdocgen.generic.paramTemplate": "\\param {param} ",
+    "doxdocgen.generic.returnTemplate": "\\return {type} ",
+    "doxdocgen.generic.briefTemplate": "\\brief {text}",
+    "doxdocgen.cpp.tparamTemplate": "\\tparam {param} ",
+    "python.linting.mypyEnabled": true,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.cursorStyle": "line",
+    "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
+    "editor.wordWrap": "off",
+    "vim.smartRelativeLine": true,
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "files.autoSave": "onFocusChange",
+    "cmake.statusbar.visibility": "compact",
+    "cmake.generator": "Unix Makefiles"
+}
