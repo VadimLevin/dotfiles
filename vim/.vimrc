@@ -204,6 +204,18 @@ map 0 ^
 vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
 vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 
+" Move selection up/down
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+" Let Y behave in the same way as other capital letters
+nnoremap Y yg$
+
+" Keep cursor centered
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap J mzJ`z
+
 " ----------------------------------------------------------------------------
 "                            Utility Functions
 " ----------------------------------------------------------------------------
