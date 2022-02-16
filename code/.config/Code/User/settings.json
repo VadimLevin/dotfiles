@@ -14,7 +14,9 @@
     "editor.minimap.renderCharacters": false,
     "vim.vimrc.enable": true,
     "cSpell.userWords": [
-        "numpy"
+        "numpy",
+        "onnx",
+        "opset"
     ],
     "diffEditor.ignoreTrimWhitespace": false,
     "files.trimTrailingWhitespace": true,
@@ -33,7 +35,6 @@
     "material-icon-theme.folders.color": "#90a4ae",
     "material-icon-theme.hidesExplorerArrows": false,
     "material-icon-theme.activeIconPack": "",
-    "workbench.iconTheme": "vscode-great-icons",
     "telemetry.enableTelemetry": false,
     "telemetry.enableCrashReporter": false,
     "workbench.editorAssociations": {
@@ -55,12 +56,25 @@
     "editor.cursorStyle": "line",
     "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
     "editor.wordWrap": "off",
-    "vim.smartRelativeLine": true,
     "notebook.cellToolbarLocation": {
         "default": "right",
         "jupyter-notebook": "left"
     },
     "files.autoSave": "onFocusChange",
     "cmake.statusbar.visibility": "compact",
-    "cmake.generator": "Unix Makefiles"
+    "cmake.generator": "Unix Makefiles",
+    "python.linting.mypyArgs": [
+        "--follow-imports=silent",
+        "--ignore-missing-imports",
+        "--show-column-numbers",
+        "--no-pretty",
+        "--show-error-codes"
+    ],
+    "notebook.lineNumbers": "on",
+    "telemetry.telemetryLevel": "off",
+    "jupyter.askForKernelRestart": false,
+    "workbench.colorTheme": "GitHub Light Default",
+    "python.formatting.autopep8Args": [
+        "--max-line-length=85"
+    ]
 }

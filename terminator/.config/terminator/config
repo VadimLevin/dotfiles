@@ -1,19 +1,25 @@
 [global_config]
+  # title_inactive_bg_color = "#4C566A"
+  # title_inactive_fg_color = "#D8DEE9"
+  # title_receive_bg_color = "#8FBCBB"
+  # title_receive_fg_color = "#2E3440"
+  # title_transmit_bg_color = "#88C0D0"
+  # title_transmit_fg_color = "#2E3440"
 [keybindings]
 [profiles]
   [[default]]
-    background_color = "#1a1b26"
+    background_color = "#282828"
+    foreground_color = "#ebdbb2"
+    palette = "#282828:#cc241d:#98971a:#d79921:#458588:#b16286:#689d6a:#a89984:#928374:#fb4934:#b8bb26:#fabd2f:#83a598:#d3869b:#8ec07c:#ebdbb2"
     cursor_color = "#aaaaaa"
-    font = Noto Mono for Powerline 10
-    foreground_color = "#a9b1d6"
-    palette = "#1a1b26:#f7768e:#9ece6a:#e0af68:#7aa2f7:#9a7ecc:#4abaaf:#acb0d0:#4e5173:#f7768e:#9ece6a:#e0af68:#7aa2f7:#9a7ecc:#4abaaf:#acb0d0"
+    font = Roboto Mono for Powerline 11
     use_system_font = False
   [[gruvbox]]
     background_color = "#282828"
-    cursor_color = "#aaaaaa"
-    font = Roboto Mono for Powerline 10
     foreground_color = "#ebdbb2"
     palette = "#282828:#cc241d:#98971a:#d79921:#458588:#b16286:#689d6a:#a89984:#928374:#fb4934:#b8bb26:#fabd2f:#83a598:#d3869b:#8ec07c:#ebdbb2"
+    cursor_color = "#aaaaaa"
+    font = Roboto Mono for Powerline 10
     use_system_font = False
   [[tokyonight]]
     background_color = "#1a1b26"
@@ -22,6 +28,11 @@
     foreground_color = "#a9b1d6"
     palette = "#1a1b26:#f7768e:#9ece6a:#e0af68:#7aa2f7:#9a7ecc:#4abaaf:#acb0d0:#4e5173:#f7768e:#9ece6a:#e0af68:#7aa2f7:#9a7ecc:#4abaaf:#acb0d0"
     use_system_font = False
+  [[nord]]
+    background_color = "#2E3440"
+    cursor_color = "#D8DEE9"
+    foreground_color = "#D8DEE9"
+    palette = "#3B4252:#BF616A:#A3BE8C:#EBCB8B:#81A1C1:#B48EAD:#88C0D0:#E5E9F0:#4C566A:#BF616A:#A3BE8C:#EBCB8B:#81A1C1:#B48EAD:#8F  BCBB:#ECEFF4"
 [layouts]
   [[default]]
     [[[window0]]]
