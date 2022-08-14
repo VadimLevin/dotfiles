@@ -35,8 +35,6 @@
     "material-icon-theme.folders.color": "#90a4ae",
     "material-icon-theme.hidesExplorerArrows": false,
     "material-icon-theme.activeIconPack": "",
-    "telemetry.enableTelemetry": false,
-    "telemetry.enableCrashReporter": false,
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter-notebook"
     },
@@ -73,8 +71,9 @@
     "notebook.lineNumbers": "on",
     "telemetry.telemetryLevel": "off",
     "jupyter.askForKernelRestart": false,
-    "workbench.colorTheme": "GitHub Light Default",
     "python.formatting.autopep8Args": [
         "--max-line-length=85"
-    ]
+    ],
+    "workbench.colorTheme": "GitHub Light Default",
+    "workbench.startupEditor": "none"
 }
