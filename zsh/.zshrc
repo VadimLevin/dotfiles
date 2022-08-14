@@ -68,7 +68,12 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git pyenv zsh-syntax-highlighting)
+plugins=(
+    git
+    pyenv
+    zsh-syntax-highlighting
+    zsh-autosuggestions
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -99,28 +104,44 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 eval "$(pyenv virtualenv-init -)"
 
+function check_last_exit_code() {
+    local LAST_EXIT_CODE=$?
+    if [[ $LAST_EXIT_CODE -ne 0 ]]; then
+        local EXIT_CODE_PROMPT=' '
+        EXIT_CODE_PROMPT+="%{$fg[red]%}-%{$reset_color%}"
+        EXIT_CODE_PROMPT+="%{$fg_bold[red]%}$LAST_EXIT_CODE%{$reset_color%}"
+        EXIT_CODE_PROMPT+="%{$fg[red]%}-%{$reset_color%}"
+        echo "$EXIT_CODE_PROMPT"
+    fi
+}
+RPROMPT='$(check_last_exit_code)'
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # place this after nvm initialization!
-autoload -U add-zsh-hook
-load-nvmrc() {
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
 
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+if type '$nvm' > /dev/null; then
+    function load-nvmrc() {
+        local node_version="$(nvm version)"
+        local nvmrc_path="$(nvm_find_nvmrc)"
 
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm use
-    fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
+        if [ -n "$nvmrc_path" ]; then
+            local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+            if [ "$nvmrc_node_version" = "N/A" ]; then
+                nvm install
+            elif [ "$nvmrc_node_version" != "$node_version" ]; then
+                nvm use
+            fi
+        elif [ "$node_version" != "$(nvm version default)" ]; then
+            echo "Reverting to nvm default version"
+            nvm use default
+        fi
+    }
+
+    autoload -U add-zsh-hook
+    add-zsh-hook chpwd load-nvmrc
+    load-nvmrc
+fi
